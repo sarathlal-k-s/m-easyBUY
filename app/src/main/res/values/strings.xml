@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">m_easyBUY</string>
+    <string name="login_button">login</string>
+    <string name="register_button">register</string>
+    <string name="welcome">Welcome.</string>
+    <string name="email">email-id</string>
+    <string name="password">password</string>
+    <string name="no_account_register">Don\'t have an account? Register</string>
+    <string name="have_account_login">Already have an account? Login</string>
+    <string name="username">username</string>
+</resources>

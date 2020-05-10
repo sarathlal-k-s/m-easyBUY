@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:background="@color/darkGrey">
+
+
+    <EditText
+        android:id="@+id/usernameRegister"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/et_email"
+        android:drawableRight="@drawable/ic_person_black_24dp"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="textEmailAddress"
+        android:padding="16dp"
+
+        android:textColorHint="#E0E0E0"
+        app:layout_constraintBottom_toTopOf="@id/emailRegister"
+        app:layout_constraintEnd_toEndOf="@+id/emailRegister"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/emailRegister" />
+
+    <EditText
+        android:id="@+id/emailRegister"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:background="@drawable/et_email"
+        android:drawableRight="@drawable/ic_email_black_24dp"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:padding="16dp"
+        android:textColorHint="#E0E0E0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.339" />
+
+    <EditText
+        android:id="@+id/passwordRegister"
+        android:background="@drawable/et_email"
+        android:layout_width="360dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="36dp"
+        android:drawableRight="@drawable/ic_password"
+        android:padding="16dp"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:textColorHint="#E0E0E0"
+        app:layout_constraintEnd_toEndOf="@+id/emailRegister"
+        app:layout_constraintStart_toStartOf="@+id/emailRegister"
+        app:layout_constraintTop_toBottomOf="@+id/emailRegister" />
+
+    <Button
+        android:id="@+id/RegisterButton"
+        android:background="@drawable/bt_reg"
+        android:layout_width="220dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/register_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/have_account_login"
+        app:layout_constraintVertical_bias="0.04" />
+
+    <TextView
+        android:id="@+id/have_account_login"
+        android:layout_width="206dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/have_account_login"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/passwordRegister"
+        app:layout_constraintTop_toBottomOf="@+id/passwordRegister" />
+</androidx.constraintlayout.widget.ConstraintLayout>
