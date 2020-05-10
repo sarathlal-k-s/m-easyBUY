@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    TextView loginText;
+    private TextView loginText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

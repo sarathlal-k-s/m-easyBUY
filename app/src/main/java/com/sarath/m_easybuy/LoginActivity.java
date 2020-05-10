@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView regText;
+    private TextView regText;
 
 
     @Override
