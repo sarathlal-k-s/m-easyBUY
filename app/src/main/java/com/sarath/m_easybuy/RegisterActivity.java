@@ -57,11 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
     public void openLogin(){
         Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
-    }
-
-    public void openMain(){
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     public void registerUser(){
@@ -116,9 +112,4 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-
-    @Override
-    public void onBackPressed(){
-        openMain();
-    }
 }

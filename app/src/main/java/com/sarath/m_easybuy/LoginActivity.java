@@ -30,16 +30,6 @@ public class LoginActivity extends AppCompatActivity {
     public void openRegister(){
         Intent intent = new Intent(this,RegisterActivity.class);
         startActivity(intent);
+        finish();
     }
-
-    public void openMain(){
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onBackPressed(){
-        openMain();
-    }
-
 }
