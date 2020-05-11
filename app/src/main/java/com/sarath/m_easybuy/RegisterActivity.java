@@ -58,6 +58,12 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
+    public void openFeed(){
+        Intent intent = new Intent(this,FeedActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
     public void registerUser(){
         String username = editTextUsername.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
@@ -98,8 +104,8 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(getApplicationContext(),"User Registration Successfull",Toast.LENGTH_SHORT).show();
-                    openLogin();
-                    Toast.makeText(getApplicationContext(),"Login with your account",Toast.LENGTH_LONG).show();
+                    openFeed();
+                    Toast.makeText(getApplicationContext(),"Logged In",Toast.LENGTH_LONG).show();
                 }else{
                     if(task.getException() instanceof FirebaseAuthUserCollisionException){
                         Toast.makeText(getApplicationContext(),"This email-id is already registered",Toast.LENGTH_SHORT).show();

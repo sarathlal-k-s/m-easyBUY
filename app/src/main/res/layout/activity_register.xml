@@ -20,6 +20,7 @@
         android:inputType="textVisiblePassword|textNoSuggestions"
         android:padding="16dp"
         android:textColorHint="#E0E0E0"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/emailRegister"
         app:layout_constraintEnd_toEndOf="@+id/emailRegister"
         app:layout_constraintHorizontal_bias="0.0"
@@ -36,6 +37,7 @@
         android:inputType="textEmailAddress"
         android:padding="16dp"
         android:textColorHint="#E0E0E0"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +56,7 @@
         android:hint="@string/password"
         android:inputType="textPassword"
         android:textColorHint="#E0E0E0"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/emailRegister"
         app:layout_constraintStart_toStartOf="@+id/emailRegister"
         app:layout_constraintTop_toBottomOf="@+id/emailRegister" />
