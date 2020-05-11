@@ -23,7 +23,6 @@ public class RegisterActivity extends AppCompatActivity {
     private Button regButton;
     private TextView loginText;
     private EditText editTextUsername,editTextEmail,editTextPassword;
-
     private FirebaseAuth mAuth;
 
     @Override
@@ -48,7 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
-
         editTextUsername = (EditText) findViewById(R.id.usernameRegister);
         editTextEmail = (EditText) findViewById(R.id.emailRegister);
         editTextPassword = (EditText) findViewById(R.id.passwordRegister);
