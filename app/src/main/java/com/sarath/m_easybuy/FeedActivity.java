@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
 public class FeedActivity extends AppCompatActivity {
 
@@ -18,7 +17,7 @@ public class FeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feed);
 
         if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new search()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,new searchFragment()).commit();
         }
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
@@ -29,13 +28,13 @@ public class FeedActivity extends AppCompatActivity {
 
                 switch (menuItem.getItemId()){
                     case R.id.search :
-                        selectedFragment = new search();
+                        selectedFragment = new searchFragment();
                         break;
                     case R.id.post :
-                        selectedFragment = new post();
+                        selectedFragment = new postFragment();
                         break;
                     case R.id.profile :
-                        selectedFragment = new profile();
+                        selectedFragment = new profileFragment();
                         break;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,selectedFragment).commit();
