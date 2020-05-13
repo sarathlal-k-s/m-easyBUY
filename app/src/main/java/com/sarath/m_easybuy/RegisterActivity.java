@@ -106,9 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
                     openFeed();
                     Toast.makeText(getApplicationContext(),"User Registered. Logged In",Toast.LENGTH_LONG).show();
                 }else{
-                    if(task.getException() instanceof FirebaseAuthUserCollisionException){
-                        Toast.makeText(getApplicationContext(),"This email-id is already registered",Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
             }
         });
