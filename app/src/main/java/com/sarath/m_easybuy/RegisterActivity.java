@@ -103,9 +103,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(),"User Registration Successful",Toast.LENGTH_SHORT).show();
                     openFeed();
-                    Toast.makeText(getApplicationContext(),"Logged In",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"User Registered. Logged In",Toast.LENGTH_LONG).show();
                 }else{
                     if(task.getException() instanceof FirebaseAuthUserCollisionException){
                         Toast.makeText(getApplicationContext(),"This email-id is already registered",Toast.LENGTH_SHORT).show();
