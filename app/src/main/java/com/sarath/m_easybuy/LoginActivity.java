@@ -89,7 +89,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Logged In",Toast.LENGTH_SHORT).show();
                     openFeed();
                 }
-                else{
+                else if(task.getException() != null){
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
             }

@@ -10,15 +10,16 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button loginButton;
-    private Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loginButton = (Button) findViewById(R.id.loginButton);
+        Button loginButton;
+        Button registerButton;
+
+        loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        registerButton = (Button) findViewById(R.id.regButton);
+        registerButton = findViewById(R.id.regButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

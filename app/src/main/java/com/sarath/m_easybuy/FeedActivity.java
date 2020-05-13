@@ -37,7 +37,9 @@ public class FeedActivity extends AppCompatActivity {
                         selectedFragment = new profileFragment();
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,selectedFragment).commit();
+                if(selectedFragment != null){
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,selectedFragment).commit();
+                }
                 return true;
             }
         });
