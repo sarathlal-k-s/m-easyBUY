@@ -9,6 +9,7 @@
 
 
     <TextView
+        android:id="@+id/welcomeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -20,7 +21,7 @@
         app:layout_constraintHorizontal_bias="0.143"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.1" />
 
     <ImageView
         android:id="@+id/rect"
@@ -56,6 +57,18 @@
         app:layout_constraintStart_toStartOf="@+id/loginButton"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
         app:layout_constraintVertical_bias="0.4" />
+
+    <ImageView
+        android:id="@+id/mecImage"
+        android:layout_width="628dp"
+        android:layout_height="473dp"
+        android:layout_marginLeft="40dp"
+        android:tint="#B3000000"
+        app:layout_constraintBottom_toTopOf="@id/welcomeText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.513"
+        app:srcCompat="@drawable/meclogo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
