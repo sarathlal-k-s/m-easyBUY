@@ -16,12 +16,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private Button regButton;
-    private TextView loginText;
     private EditText editTextUsername,editTextEmail,editTextPassword;
     private FirebaseAuth mAuth;
 
@@ -30,7 +27,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        loginText = (TextView) findViewById(R.id.have_account_login);
+        Button regButton;
+        TextView loginText;
+
+        loginText = findViewById(R.id.have_account_login);
         loginText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        regButton = (Button) findViewById(R.id.RegisterButton);
+        regButton = findViewById(R.id.RegisterButton);
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,9 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         mAuth = FirebaseAuth.getInstance();
-        editTextUsername = (EditText) findViewById(R.id.usernameRegister);
-        editTextEmail = (EditText) findViewById(R.id.emailRegister);
-        editTextPassword = (EditText) findViewById(R.id.passwordRegister);
+        editTextUsername = findViewById(R.id.usernameRegister);
+        editTextEmail = findViewById(R.id.emailRegister);
+        editTextPassword = findViewById(R.id.passwordRegister);
     }
 
     public void openLogin(){
@@ -105,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     openFeed();
                     Toast.makeText(getApplicationContext(),"User Registered. Logged In",Toast.LENGTH_LONG).show();
-                }else{
+                }else if(task.getException() != null){
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
             }
