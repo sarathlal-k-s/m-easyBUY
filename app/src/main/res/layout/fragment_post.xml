@@ -12,95 +12,78 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <EditText
-            android:layout_width="360dp"
-            android:layout_height="60dp"
+        <ImageView
+            android:id="@+id/imageViewUpload"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_upload"
             android:layout_marginTop="100dp"
-            android:hint="one"
-            android:textColorHint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+        </ImageView>
 
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="360dp"
+            android:layout_height="60dp"
+            android:background="@drawable/et_email"
+            android:padding="16dp"
+            android:hint="Title"
+            android:textColor="@color/white"
+            android:textColorHint="@color/offWhite"
+            android:layout_marginTop="70dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewUpload">
         </EditText>
 
         <EditText
+            android:id="@+id/editTextDescription"
             android:layout_width="360dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="220dp"
-            android:hint="two"
-            android:textColorHint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
+            android:layout_height="180dp"
+            android:background="@drawable/et_email"
+            android:padding="16dp"
+            android:hint="Description"
+            android:textColor="@color/white"
+            android:textColorHint="@color/offWhite"
+            android:gravity="start"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editTextTitle">
         </EditText>
 
         <EditText
+            android:id="@+id/editTextPrice"
             android:layout_width="360dp"
             android:layout_height="60dp"
-            android:layout_marginTop="340dp"
-            android:hint="three"
-            android:textColorHint="@color/white"
+            android:background="@drawable/et_email"
+            android:padding="16dp"
+            android:hint="Price"
+            android:textColor="@color/white"
+            android:textColorHint="@color/offWhite"
+            android:inputType="numberDecimal"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.515"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+            app:layout_constraintTop_toBottomOf="@id/editTextDescription">
         </EditText>
 
         <EditText
+            android:id="@+id/editTextPhone"
             android:layout_width="360dp"
             android:layout_height="60dp"
-            android:layout_marginTop="460dp"
-            android:hint="four"
-            android:textColorHint="@color/white"
+            android:background="@drawable/et_email"
+            android:padding="16dp"
+            android:hint="Mobile Number"
+            android:textColor="@color/white"
+            android:textColorHint="@color/offWhite"
+            android:inputType="phone"
+            android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </EditText>
-
-        <EditText
-            android:layout_width="360dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="580dp"
-            android:hint="five"
-            android:textColorHint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </EditText>
-
-        <EditText
-            android:layout_width="360dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="700dp"
-            android:hint="six"
-            android:textColorHint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </EditText>
-
-        <EditText
-            android:layout_width="360dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="820dp"
-            android:hint="seven"
-            android:textColorHint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.484"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+            app:layout_constraintTop_toBottomOf="@id/editTextPrice">
         </EditText>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
