@@ -6,6 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,6 +22,12 @@ public class MainActivity extends AppCompatActivity {
 
         Button loginButton;
         Button registerButton;
+        FirebaseUser user;
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null){
+            openFeed();
+        }
 
         loginButton = findViewById(R.id.loginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -26,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 openLogin();
             }
         });
-
 
         registerButton = findViewById(R.id.regButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +53,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void openRegister(){
         Intent intent = new Intent(this,RegisterActivity.class);
+        startActivity(intent);
+    }
+
+    public void openFeed(){
+        Intent intent = new Intent(this,FeedActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
     }
 
