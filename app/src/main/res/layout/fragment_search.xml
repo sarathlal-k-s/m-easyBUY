@@ -7,19 +7,16 @@
     android:background="@color/darkGrey"
     tools:context=".searchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/textViewSearch"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="142dp"
-        android:layout_marginLeft="142dp"
-        android:layout_marginTop="358dp"
-        android:layout_marginEnd="142dp"
-        android:layout_marginRight="142dp"
-        android:layout_marginBottom="358dp"
-        android:text="Search Fragment"
+        android:gravity="start"
+        android:paddingLeft="25dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/search"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

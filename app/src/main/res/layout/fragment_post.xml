@@ -12,6 +12,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/textViewPostAd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/post_ad"
+            android:textColor="@color/white"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/imageViewUpload"
             android:layout_width="100dp"
@@ -20,19 +32,19 @@
             android:layout_marginTop="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/textViewPostAd">
         </ImageView>
 
         <EditText
             android:id="@+id/editTextTitle"
-            android:layout_width="360dp"
+            android:layout_width="390dp"
             android:layout_height="60dp"
             android:background="@drawable/et_email"
             android:padding="16dp"
             android:hint="Title"
             android:textColor="@color/white"
             android:textColorHint="@color/offWhite"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="100dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/imageViewUpload">
@@ -40,7 +52,7 @@
 
         <EditText
             android:id="@+id/editTextDescription"
-            android:layout_width="360dp"
+            android:layout_width="390dp"
             android:layout_height="180dp"
             android:background="@drawable/et_email"
             android:padding="16dp"
@@ -56,7 +68,7 @@
 
         <EditText
             android:id="@+id/editTextPrice"
-            android:layout_width="360dp"
+            android:layout_width="390dp"
             android:layout_height="60dp"
             android:background="@drawable/et_email"
             android:padding="16dp"
@@ -72,7 +84,7 @@
 
         <EditText
             android:id="@+id/editTextPhone"
-            android:layout_width="360dp"
+            android:layout_width="390dp"
             android:layout_height="60dp"
             android:background="@drawable/et_email"
             android:padding="16dp"
@@ -85,6 +97,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/editTextPrice">
         </EditText>
+
+        <Button
+            android:id="@+id/buttonPostAd"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/bt_login"
+            android:text="@string/post_ad"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPhone"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
