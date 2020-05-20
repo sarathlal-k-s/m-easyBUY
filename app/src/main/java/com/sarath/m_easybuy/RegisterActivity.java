@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -65,13 +67,18 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void registerUser(){
-        String username = editTextUsername.getText().toString().trim();
+        final String username = editTextUsername.getText().toString().trim();
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
 
         if(username.isEmpty()){
             editTextUsername.setError("Username Required");
+            editTextUsername.requestFocus();
+            return;
+        }
+        if (username.contains(" ")) {
+            editTextUsername.setError("No Spaces Allowed");
             editTextUsername.requestFocus();
             return;
         }
@@ -88,6 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+
         if(password.isEmpty()){
             editTextPassword.setError("Password Required");
             editTextPassword.requestFocus();
@@ -103,6 +111,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+                    user.updateProfile(profileUpdates);
                     openFeed();
                     Toast.makeText(getApplicationContext(),"User Registered. Logged In",Toast.LENGTH_LONG).show();
                 }else if(task.getException() != null){

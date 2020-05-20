@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 /**
@@ -22,18 +24,33 @@ public class profileFragment extends Fragment {
         // Required empty public constructor
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-
         view.findViewById(R.id.logoutButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logoutUser();
             }
         });
+
+        TextView textViewUsername;
+        TextView textViewEmail;
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user != null){
+            String name = "Name : " + user.getDisplayName();
+            String email = "Email : " + user.getEmail();
+
+            textViewUsername = view.findViewById(R.id.textViewUsername);
+            textViewUsername.setText(name);
+
+            textViewEmail = view.findViewById(R.id.textViewEmail);
+            textViewEmail.setText(email);
+        }
         return view;
     }
 
