@@ -15,7 +15,6 @@
         android:layout_alignParentBottom="true"
         android:background="#151515"
         app:itemIconTint="@drawable/bottom_nav_color"
-        app:itemTextColor="@drawable/bottom_nav_color"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_menu" />
 
