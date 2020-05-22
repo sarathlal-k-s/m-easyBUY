@@ -18,11 +18,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText editTextUsername,editTextEmail,editTextPassword;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore fstore;
+    String userid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.usernameRegister);
         editTextEmail = findViewById(R.id.emailRegister);
         editTextPassword = findViewById(R.id.passwordRegister);
+        fstore = FirebaseFirestore.getInstance();
     }
 
     public void openLogin(){
@@ -68,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void registerUser(){
         final String username = editTextUsername.getText().toString().trim();
-        String email = editTextEmail.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
 
@@ -112,9 +120,19 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     FirebaseUser user = mAuth.getCurrentUser();
+                    userid = user.getUid();
+
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
                     user.updateProfile(profileUpdates);
+
                     openFeed();
+
+                    DocumentReference reference = fstore.collection("users").document(userid);
+                    Map<String,Object> userDetails = new HashMap<>();
+                    userDetails.put("name",username);
+                    userDetails.put("email",email);
+                    reference.set(userDetails);
+
                     Toast.makeText(getApplicationContext(),"User Registered. Logged In",Toast.LENGTH_LONG).show();
                 }else if(task.getException() != null){
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_LONG).show();
