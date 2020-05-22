@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,10 +27,12 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private ProgressBar progressBar;
     private EditText editTextUsername,editTextEmail,editTextPassword;
     private FirebaseAuth mAuth;
     private FirebaseFirestore fstore;
     String userid;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,10 @@ public class RegisterActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.usernameRegister);
         editTextEmail = findViewById(R.id.emailRegister);
         editTextPassword = findViewById(R.id.passwordRegister);
+        progressBar = findViewById(R.id.progressbar);
         fstore = FirebaseFirestore.getInstance();
+
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     public void openLogin(){
@@ -75,17 +81,19 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void registerUser(){
+        progressBar.setVisibility(View.VISIBLE);
         final String username = editTextUsername.getText().toString().trim();
         final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-
         if(username.isEmpty()){
+            progressBar.setVisibility(View.INVISIBLE);
             editTextUsername.setError("Username Required");
             editTextUsername.requestFocus();
             return;
         }
         if (username.contains(" ")) {
+            progressBar.setVisibility(View.INVISIBLE);
             editTextUsername.setError("No Spaces Allowed");
             editTextUsername.requestFocus();
             return;
@@ -93,11 +101,13 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         if(email.isEmpty()){
+            progressBar.setVisibility(View.INVISIBLE);
             editTextEmail.setError("Email-id Required");
             editTextEmail.requestFocus();
             return;
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            progressBar.setVisibility(View.INVISIBLE);
             editTextEmail.setError("Enter a valid email-id");
             editTextEmail.requestFocus();
             return;
@@ -105,11 +115,13 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         if(password.isEmpty()){
+            progressBar.setVisibility(View.INVISIBLE);
             editTextPassword.setError("Password Required");
             editTextPassword.requestFocus();
             return;
         }
         if(password.length()<6){
+            progressBar.setVisibility(View.INVISIBLE);
             editTextPassword.setError("Minimum length of password is 6");
             editTextPassword.requestFocus();
             return;
@@ -125,16 +137,27 @@ public class RegisterActivity extends AppCompatActivity {
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
                     user.updateProfile(profileUpdates);
 
-                    openFeed();
-
                     DocumentReference reference = fstore.collection("users").document(userid);
                     Map<String,Object> userDetails = new HashMap<>();
                     userDetails.put("name",username);
                     userDetails.put("email",email);
-                    reference.set(userDetails);
+                    reference.set(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()) {
+                                progressBar.setVisibility(View.INVISIBLE);
+                                openFeed();
+                                Toast.makeText(getApplicationContext(), "User Registered. Logged In", Toast.LENGTH_LONG).show();
+                            }
+                            else{
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Toast.makeText(getApplicationContext(), "Error During Storing User Data", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
 
-                    Toast.makeText(getApplicationContext(),"User Registered. Logged In",Toast.LENGTH_LONG).show();
                 }else if(task.getException() != null){
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
             }
