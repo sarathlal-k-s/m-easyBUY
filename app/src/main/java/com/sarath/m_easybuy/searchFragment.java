@@ -37,7 +37,7 @@ public class searchFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         FirebaseFirestore fstore = FirebaseFirestore.getInstance();
-        Query query = fstore.collection("ads");
+        Query query = fstore.collection("ads").orderBy("timestamp", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<adModel> options = new FirestoreRecyclerOptions.Builder<adModel>()
                 .setQuery(query,adModel.class).build();
