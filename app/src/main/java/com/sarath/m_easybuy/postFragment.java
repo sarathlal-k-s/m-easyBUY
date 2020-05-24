@@ -100,6 +100,12 @@ public class postFragment extends Fragment {
             editTextTitle.requestFocus();
             return;
         }
+        if(title.length()>50){
+            progressBar.setVisibility(View.INVISIBLE);
+            editTextTitle.setError("Title is too long");
+            editTextTitle.requestFocus();
+            return;
+        }
 
         if(price.isEmpty()){
             progressBar.setVisibility(View.INVISIBLE);
