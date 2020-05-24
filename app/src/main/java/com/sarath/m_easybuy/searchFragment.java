@@ -1,5 +1,6 @@
 package com.sarath.m_easybuy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -21,7 +23,7 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  *
  */
-public class searchFragment extends Fragment {
+public class searchFragment extends Fragment implements itemAdapter.OnListItemClick{
 
     public searchFragment() {
         // Required empty public constructor
@@ -43,7 +45,7 @@ public class searchFragment extends Fragment {
                 .setQuery(query,adModel.class).build();
 
 
-        recycleradapter = new itemAdapter(options);
+        recycleradapter = new itemAdapter(options,this);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(recycleradapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -61,5 +63,11 @@ public class searchFragment extends Fragment {
     public void onStop() {
         super.onStop();
         recycleradapter.stopListening();
+    }
+
+    @Override
+    public void onItemClick() {
+        Intent intent = new Intent(getActivity(),AdPageActivity.class);
+        startActivity(intent);
     }
 }
