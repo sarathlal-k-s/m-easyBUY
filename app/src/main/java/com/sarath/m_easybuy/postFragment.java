@@ -128,6 +128,11 @@ public class postFragment extends Fragment {
             return;
         }
 
+        editTextTitle.setText("");
+        editTextDescription.setText("");
+        editTextPhone.setText("");
+        editTextPrice.setText("");
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore fstore = FirebaseFirestore.getInstance();
         String adId,userid,username;
