@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/darkGrey"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <ImageView
+        android:id="@+id/imageViewAdpageImage"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:src="@drawable/meclogo"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewAdpageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageViewAdpageImage" />
+
+    <TextView
+        android:id="@+id/textViewAdpageDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textColor="@color/offWhite"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewAdpageTitle" />
+
+    <TextView
+        android:id="@+id/phoneTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact Number"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewAdpageDescription"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"/>
+
+    <TextView
+        android:id="@+id/textViewAdpagePhone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:layout_marginLeft="40dp"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/phoneTitle"
+        app:layout_constraintBottom_toTopOf="@id/linearLayout"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingBottom="20dp"
+            android:weightSum="10"
+            android:layout_weight="1">
+
+            <TextView
+                android:layout_weight="5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textColor="@color/offWhite"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_weight="5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹ 999"
+                android:textSize="30sp"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/bt_contactseller"
+            android:text="contact\nseller"
+            android:textColor="@color/black"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
+
