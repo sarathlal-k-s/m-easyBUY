@@ -17,38 +17,45 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="15dp"
             android:layout_weight="40"
             android:orientation="vertical">
 
             <TextView
+                android:padding="15dp"
                 android:id="@+id/textViewTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Title"
                 android:textColor="@color/white"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:maxLines="2"
                 android:ellipsize="end"/>
 
             <TextView
                 android:id="@+id/textViewPrice"
+                android:background="@drawable/tv_price"
+                android:paddingLeft="20dp"
+                android:paddingRight="12dp"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="600"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textViewDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:paddingTop="7dp"
+                android:paddingLeft="30dp"
                 android:text="desciption"
+                android:maxLines="2"
                 android:textColor="@color/offWhite"
+                android:textStyle="italic"
                 android:textSize="15sp"
-                android:maxLines="3"
                 android:ellipsize="end"/>
         </LinearLayout>
 
