@@ -56,13 +56,16 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onItemClick();
+                    int position = getAdapterPosition();
+                    if(position != RecyclerView.NO_POSITION && listener != null){
+                        listener.onItemClick(getSnapshots().getSnapshot(position));
+                    }
                 }
             });
         }
     }
 
     public interface OnListItemClick{
-        void onItemClick();
+        void onItemClick(DocumentSnapshot documentSnapshot);
     }
 }

@@ -66,8 +66,9 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
     }
 
     @Override
-    public void onItemClick() {
-        Intent intent = new Intent(getActivity(),AdPageActivity.class);
+    public void onItemClick(DocumentSnapshot documentSnapshot) {
+        adModel adModel = documentSnapshot.toObject(adModel.class);
+        Intent intent = new Intent(getActivity(),AdPageActivity.class).putExtra("data",adModel);
         startActivity(intent);
     }
 }

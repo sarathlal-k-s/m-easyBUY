@@ -1,18 +1,23 @@
 package com.sarath.m_easybuy;
 
-public class adModel {
+import java.io.Serializable;
+
+public class adModel implements Serializable {
 
     private String title;
     private String price;
     private String description;
+    private String phone;
 
     private adModel(){
     }
-    public adModel(String title,String price,String description){
+
+    public adModel(String title,String price,String description,String phone){
 
         this.title=title;
         this.price=price;
         this.description=description;
+        this.phone =phone;
     }
 
     public String getTitle() {
@@ -37,5 +42,13 @@ public class adModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

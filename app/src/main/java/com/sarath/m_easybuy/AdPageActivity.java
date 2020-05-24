@@ -2,6 +2,7 @@ package com.sarath.m_easybuy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,5 +31,14 @@ public class AdPageActivity extends AppCompatActivity {
         });
 
 
+        Intent intent = getIntent();
+        if(intent.getExtras() != null){
+            adModel adItem = (adModel) intent.getSerializableExtra("data");
+
+            title.setText(adItem.getTitle());
+            description.setText(adItem.getDescription());
+            price.setText("₹ "+adItem.getPrice());
+            phone.setText(adItem.getPhone());
+        }
     }
 }
