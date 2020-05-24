@@ -34,7 +34,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position,adModel model) {
         holder.title.setText(model.getTitle());
-        holder.price.setText(model.getPrice());
+        holder.price.setText("₹"+model.getPrice());
         holder.description.setText(model.getDescription());
     }
 
