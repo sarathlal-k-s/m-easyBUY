@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -144,7 +145,7 @@ public class postFragment extends Fragment {
         adDetails.put("title",title);
         adDetails.put("publisherName",username);
         adDetails.put("publisherID",userid);
-        adDetails.put("postid",adId);
+        adDetails.put("timestamp", FieldValue.serverTimestamp());
 
         documentReference.set(adDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
