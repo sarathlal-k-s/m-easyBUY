@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.339" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <EditText
         android:id="@+id/passwordLogin"
@@ -48,10 +48,12 @@
         app:layout_constraintTop_toBottomOf="@+id/no_account_register" />
 
     <TextView
+        android:padding="5dp"
         android:id="@+id/no_account_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
         android:text="@string/no_account_register"
         android:textColor="@color/offWhite"
         app:layout_constraintEnd_toEndOf="@+id/passwordLogin"
