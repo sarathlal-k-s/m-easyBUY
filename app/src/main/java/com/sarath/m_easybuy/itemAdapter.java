@@ -1,7 +1,5 @@
 package com.sarath.m_easybuy;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
-
-import java.util.List;
 
 public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.ViewHolder> {
 
