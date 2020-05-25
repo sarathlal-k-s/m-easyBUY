@@ -13,7 +13,6 @@
         android:layout_height="60dp"
         android:background="@drawable/et_email"
         android:drawableRight="@drawable/ic_email_black_24dp"
-        android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:padding="16dp"
@@ -31,7 +30,6 @@
         android:layout_marginTop="36dp"
         android:drawableRight="@drawable/ic_password"
         android:padding="16dp"
-        android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/emailLogin"
@@ -43,22 +41,19 @@
         android:background="@drawable/bt_login"
         android:layout_width="200dp"
         android:layout_height="57dp"
-        android:layout_marginTop="32dp"
         android:text="@string/login_button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/no_account_register"
-        app:layout_constraintVertical_bias="0.04" />
+        app:layout_constraintTop_toBottomOf="@+id/no_account_register" />
 
     <TextView
         android:id="@+id/no_account_register"
-        android:layout_width="206dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/no_account_register"
-        android:textColor="@color/white"
+        android:textColor="@color/offWhite"
         app:layout_constraintEnd_toEndOf="@+id/passwordLogin"
         app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
 </androidx.constraintlayout.widget.ConstraintLayout>

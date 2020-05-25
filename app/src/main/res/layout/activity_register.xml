@@ -88,11 +88,11 @@
 
     <TextView
         android:id="@+id/have_account_login"
-        android:layout_width="206dp"
-        android:layout_height="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/have_account_login"
-        android:textColor="@color/white"
+        android:textColor="@color/offWhite"
         app:layout_constraintEnd_toEndOf="@+id/passwordRegister"
         app:layout_constraintTop_toBottomOf="@+id/passwordRegister" />
 </androidx.constraintlayout.widget.ConstraintLayout>

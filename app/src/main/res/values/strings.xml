@@ -7,7 +7,7 @@
     <string name="email">email-id</string>
     <string name="password">password</string>
     <string name="no_account_register">Don\'t have an account? Register</string>
-    <string name="have_account_login">Already have an account? Login</string>
+    <string name="have_account_login">Have an account? Login</string>
     <string name="username">username</string>
     <string name="post_ad">Post Ad</string>
     <string name="profile">Profile</string>
