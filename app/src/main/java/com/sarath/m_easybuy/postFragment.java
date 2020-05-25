@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -81,10 +82,20 @@ public class postFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if(requestCode == 1 && resultCode == Activity.RESULT_OK){
             Uri selectedImageUri = data.getData();
-            imageViewUpload.setImageURI(selectedImageUri);
+            CropImage.activity(selectedImageUri)
+                    .setAspectRatio(1,1)
+                    .start(getContext(),this);
+        }
+        if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+            CropImage.ActivityResult result = CropImage.getActivityResult(data);
+            if (resultCode == Activity.RESULT_OK) {
+                Uri resultUri = result.getUri();
+                imageViewUpload.setImageURI(resultUri);
+            } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                Exception error = result.getError();
+            }
         }
     }
 
