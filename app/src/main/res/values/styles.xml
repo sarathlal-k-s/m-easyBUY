@@ -6,6 +6,8 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/darkGrey</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="android:textColorHint">@color/offWhite</item>
     </style>
 
 </resources>
