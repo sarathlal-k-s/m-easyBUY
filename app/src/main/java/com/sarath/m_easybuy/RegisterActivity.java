@@ -92,13 +92,6 @@ public class RegisterActivity extends AppCompatActivity {
             editTextUsername.requestFocus();
             return;
         }
-        if (username.contains(" ")) {
-            progressBar.setVisibility(View.INVISIBLE);
-            editTextUsername.setError("No Spaces Allowed");
-            editTextUsername.requestFocus();
-            return;
-        }
-
 
         if(email.isEmpty()){
             progressBar.setVisibility(View.INVISIBLE);
