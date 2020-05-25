@@ -27,12 +27,11 @@
 
         <ImageView
             android:id="@+id/imageViewAdpageImage"
-            android:layout_width="match_parent"
+            android:layout_width="400dp"
             android:layout_height="400dp"
             android:padding="20dp"
             android:src="@drawable/imageplaceholder"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
