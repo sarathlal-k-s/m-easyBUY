@@ -8,17 +8,28 @@ public class adModel implements Serializable {
     private String price;
     private String description;
     private String phone;
+    private String publisherName;
 
     private adModel(){
     }
 
-    public adModel(String title,String price,String description,String phone){
+    public adModel(String title, String price, String description, String phone, String publisherName){
 
         this.title=title;
         this.price=price;
         this.description=description;
         this.phone =phone;
+        this.publisherName=publisherName;
     }
+
+    public String getPublisherName() {
+        return publisherName;
+    }
+
+    public void setPublisherName(String publisherName) {
+        this.publisherName = publisherName;
+    }
+
 
     public String getTitle() {
         return title;

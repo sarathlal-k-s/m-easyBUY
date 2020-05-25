@@ -93,7 +93,6 @@
                 android:id="@+id/phoneTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
                 android:layout_marginLeft="30dp"
                 android:text="Contact Number"
                 android:textColor="@color/white"
@@ -106,10 +105,9 @@
 
             <TextView
                 android:id="@+id/textViewAdpagePhone"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginBottom="50dp"
                 android:paddingTop="3dp"
                 android:text="+91 9999999999"
@@ -120,6 +118,38 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/phoneTitle" />
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/usernameTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:text="Seller"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toTopOf="@id/linearLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textViewAdpageDescription"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <TextView
+                android:id="@+id/textViewAdpageUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="50dp"
+                android:paddingTop="3dp"
+                android:text="username"
+                android:textColor="@color/offWhite"
+                android:textStyle="italic"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@id/usernameTitle"
+                />
 
             <LinearLayout
                 android:id="@+id/linearLayout"

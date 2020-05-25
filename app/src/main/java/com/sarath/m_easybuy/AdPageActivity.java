@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class AdPageActivity extends AppCompatActivity {
-    TextView title,description,price,phone;
+    TextView title,description,price,phone,publisherName;
     ImageView backbutton;
 
     @Override
@@ -23,6 +23,7 @@ public class AdPageActivity extends AppCompatActivity {
         description = findViewById(R.id.textViewAdpageDescription);
         price = findViewById(R.id.textViewAdpagePrice);
         phone = findViewById(R.id.textViewAdpagePhone);
+        publisherName = findViewById(R.id.textViewAdpageUsername);
 
         backbutton = findViewById(R.id.backbutton);
         backbutton.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +42,7 @@ public class AdPageActivity extends AppCompatActivity {
             description.setText(adItem.getDescription());
             price.setText("₹ "+adItem.getPrice());
             phone.setText(adItem.getPhone());
+            publisherName.setText(adItem.getPublisherName());
         }
 
         final String phNo = phone.getText().toString().trim();
