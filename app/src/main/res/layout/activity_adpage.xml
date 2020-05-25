@@ -53,14 +53,14 @@
                 android:layout_marginRight="30dp"
                 android:text="Title"
                 android:textColor="@color/white"
-                android:textSize="25sp"
-                android:textStyle="bold"
+                android:textSize="30sp"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/descriptionTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,13 +82,14 @@
                 android:layout_marginRight="35dp"
                 android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore \n\net dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in"
                 android:textColor="@color/offWhite"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textStyle="italic"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/descriptionTitle" />
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/phoneTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,6 +111,7 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:layout_marginBottom="50dp"
+                android:paddingTop="3dp"
                 android:text="+91 9999999999"
                 android:textColor="@color/offWhite"
                 android:textStyle="italic"
