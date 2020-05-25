@@ -21,18 +21,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <SearchView
         android:id="@+id/editTextSearch"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/et_search"
-        android:drawableRight="@drawable/ic_search_black_24dp"
-        android:hint="@string/findAd"
-        android:padding="16dp"
-        android:textColorHint="@color/offWhite"
-        android:textColor="@color/white"
+        android:queryHint="Find Ad"
+        android:iconifiedByDefault="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
