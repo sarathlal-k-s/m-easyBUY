@@ -17,8 +17,6 @@
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:padding="16dp"
-        android:textColorHint="@color/offWhite"
-        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,8 +34,6 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:textColorHint="@color/offWhite"
-        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/emailLogin"
         app:layout_constraintStart_toStartOf="@+id/emailLogin"
         app:layout_constraintTop_toBottomOf="@+id/emailLogin" />
