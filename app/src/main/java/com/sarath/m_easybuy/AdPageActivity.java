@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 public class AdPageActivity extends AppCompatActivity {
     TextView title,description,price,phone,publisherName;
     ImageView backbutton,image;
@@ -44,6 +46,7 @@ public class AdPageActivity extends AppCompatActivity {
             price.setText("₹ "+adItem.getPrice());
             phone.setText(adItem.getPhone());
             publisherName.setText(adItem.getPublisherName());
+            Picasso.get().load(adItem.getImage()).into(image);
         }
 
         final String phNo = phone.getText().toString().trim();
