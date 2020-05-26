@@ -39,6 +39,7 @@ public class profileFragment extends Fragment {
 
         TextView textViewUsername;
         TextView textViewEmail;
+        TextView textViewYourAds;
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user != null){
@@ -51,6 +52,16 @@ public class profileFragment extends Fragment {
             textViewEmail = view.findViewById(R.id.textViewEmail);
             textViewEmail.setText(email);
         }
+
+        textViewYourAds = view.findViewById(R.id.textViewYourAds);
+        textViewYourAds.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),MyAdsActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
 
