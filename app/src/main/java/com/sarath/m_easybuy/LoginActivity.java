@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText emailEditText,passwordEditText;
     private FirebaseAuth mAuth;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         emailEditText = findViewById(R.id.emailLogin);
         passwordEditText = findViewById(R.id.passwordLogin);
+        progressBar = findViewById(R.id.progressbar);
     }
 
     public void openRegister(){
@@ -57,26 +60,31 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginUser(){
+        progressBar.setVisibility(View.VISIBLE);
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
 
         if(email.isEmpty()){
+            progressBar.setVisibility(View.INVISIBLE);
             emailEditText.setError("Email-id Required");
             emailEditText.requestFocus();
             return;
         }
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            progressBar.setVisibility(View.INVISIBLE);
             emailEditText.setError("Enter a valid email-id");
             emailEditText.requestFocus();
             return;
         }
 
         if(password.isEmpty()){
+            progressBar.setVisibility(View.INVISIBLE);
             passwordEditText.setError("Password Required");
             passwordEditText.requestFocus();
             return;
         }
         if(password.length()<6){
+            progressBar.setVisibility(View.INVISIBLE);
             passwordEditText.setError("Minimum length of password is 6");
             passwordEditText.requestFocus();
             return;
@@ -86,10 +94,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(),"Logged In",Toast.LENGTH_SHORT).show();
                     openFeed();
                 }
                 else if(task.getException() != null){
+                    progressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(),Toast.LENGTH_LONG).show();
                 }
             }
