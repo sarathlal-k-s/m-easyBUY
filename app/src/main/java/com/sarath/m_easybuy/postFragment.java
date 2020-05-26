@@ -133,7 +133,7 @@ public class postFragment extends Fragment {
         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),resultUri);
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
         byte[] data = baos.toByteArray();
         UploadTask uploadTask = (UploadTask) ref.putBytes(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
