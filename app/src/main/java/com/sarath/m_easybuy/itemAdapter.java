@@ -44,6 +44,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
         holder.title.setText(model.getTitle());
         holder.price.setText("₹ "+model.getPrice());
         holder.description.setText(model.getDescription());
+        holder.username.setText(model.getPublisherName());
         Picasso.get().load(model.getImage()).placeholder(R.drawable.imageplaceholder).into(holder.image);
     }
 
@@ -51,7 +52,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         OnListItemClick listener;
-        TextView title,price,description;
+        TextView title,price,description,username;
         ImageView image;
         public ViewHolder(@NonNull View itemView, final OnListItemClick listener) {
             super(itemView);
@@ -60,6 +61,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
             price = itemView.findViewById(R.id.textViewPrice);
             description = itemView.findViewById(R.id.textViewDescription);
             image = itemView.findViewById(R.id.imageViewImage);
+            username = itemView.findViewById(R.id.textViewUsername);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
