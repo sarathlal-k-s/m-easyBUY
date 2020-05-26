@@ -44,7 +44,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
         holder.title.setText(model.getTitle());
         holder.price.setText("₹ "+model.getPrice());
         holder.description.setText(model.getDescription());
-        Picasso.get().load(model.getImage()).into(holder.image);
+        Picasso.get().load(model.getImage()).placeholder(R.drawable.imageplaceholder).into(holder.image);
     }
 
 
