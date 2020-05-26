@@ -45,13 +45,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
         holder.price.setText("₹ "+model.getPrice());
         holder.description.setText(model.getDescription());
         if(model.getImage() != "noimage"){
-            Log.d("dd","There is an image");
             Picasso.get().load(model.getImage()).into(holder.image);
-        }
-        else{
-            holder.setIsRecyclable(false);
-            Log.d("dd","there is no image");
-            Picasso.get().load(model.getImage()).placeholder(R.drawable.imageplaceholder).into(holder.image);
         }
     }
 
