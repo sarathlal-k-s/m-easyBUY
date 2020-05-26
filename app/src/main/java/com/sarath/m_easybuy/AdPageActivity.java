@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class AdPageActivity extends AppCompatActivity {
     TextView title,description,price,phone,publisherName;
-    ImageView backbutton;
+    ImageView backbutton,image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +24,7 @@ public class AdPageActivity extends AppCompatActivity {
         price = findViewById(R.id.textViewAdpagePrice);
         phone = findViewById(R.id.textViewAdpagePhone);
         publisherName = findViewById(R.id.textViewAdpageUsername);
+        image = findViewById(R.id.imageViewAdpageImage);
 
         backbutton = findViewById(R.id.backbutton);
         backbutton.setOnClickListener(new View.OnClickListener() {

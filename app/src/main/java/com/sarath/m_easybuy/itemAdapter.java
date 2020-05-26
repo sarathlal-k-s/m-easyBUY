@@ -1,8 +1,11 @@
 package com.sarath.m_easybuy;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +14,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Transformation;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.ViewHolder> {
 
@@ -35,6 +43,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
         holder.title.setText(model.getTitle());
         holder.price.setText("₹ "+model.getPrice());
         holder.description.setText(model.getDescription());
+        Picasso.get().load(model.getImage()).into(holder.image);
     }
 
 
@@ -42,12 +51,14 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
 
         OnListItemClick listener;
         TextView title,price,description;
+        ImageView image;
         public ViewHolder(@NonNull View itemView, final OnListItemClick listener) {
             super(itemView);
             this.listener = listener;
             title = itemView.findViewById(R.id.textViewTitle);
             price = itemView.findViewById(R.id.textViewPrice);
             description = itemView.findViewById(R.id.textViewDescription);
+            image = itemView.findViewById(R.id.imageViewImage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -64,4 +75,5 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
     public interface OnListItemClick{
         void onItemClick(DocumentSnapshot documentSnapshot);
     }
+
 }

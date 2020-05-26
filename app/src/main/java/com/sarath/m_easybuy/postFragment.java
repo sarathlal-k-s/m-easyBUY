@@ -123,13 +123,19 @@ public class postFragment extends Fragment {
     }
 
     private void FileUploader(){
-        final StorageReference ref = storageReference.child(adId);
+        final StorageReference ref = storageReference.child(adId+"."+"jpeg");
         ref.putFile(resultUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        imageurl = ref.getDownloadUrl().toString();
-                        documentReference.update("imageurl",imageurl);
+                        ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                imageurl = uri.toString();
+                                Log.d("dd",imageurl);
+                                documentReference.update("image",imageurl);
+                            }
+                        });
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
