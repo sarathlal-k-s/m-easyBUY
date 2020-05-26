@@ -2,6 +2,7 @@ package com.sarath.m_easybuy;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,10 +44,13 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
         holder.title.setText(model.getTitle());
         holder.price.setText("₹ "+model.getPrice());
         holder.description.setText(model.getDescription());
-        if(!model.getImage().equals("noimage")){
+        if(model.getImage() != "noimage"){
+            Log.d("dd","There is an image");
             Picasso.get().load(model.getImage()).into(holder.image);
         }
         else{
+            holder.setIsRecyclable(false);
+            Log.d("dd","there is no image");
             Picasso.get().load(model.getImage()).placeholder(R.drawable.imageplaceholder).into(holder.image);
         }
     }
