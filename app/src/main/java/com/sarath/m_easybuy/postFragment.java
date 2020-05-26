@@ -1,19 +1,19 @@
 package com.sarath.m_easybuy;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,6 +34,8 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,7 +82,11 @@ public class postFragment extends Fragment {
         buttonPostAd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                postAd();
+                try {
+                    postAd();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -122,9 +128,14 @@ public class postFragment extends Fragment {
         }
     }
 
-    private void FileUploader(){
+    private void FileUploader() throws IOException {
         final StorageReference ref = storageReference.child(adId);
-        ref.putFile(resultUri)
+        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),resultUri);
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos);
+        byte[] data = baos.toByteArray();
+        UploadTask uploadTask = (UploadTask) ref.putBytes(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -132,7 +143,6 @@ public class postFragment extends Fragment {
                             @Override
                             public void onSuccess(Uri uri) {
                                 imageurl = uri.toString();
-                                Log.d("dd",imageurl);
                                 documentReference.update("image",imageurl);
                             }
                         });
@@ -147,7 +157,7 @@ public class postFragment extends Fragment {
 
     }
 
-    private void postAd(){
+    private void postAd() throws IOException {
         progressBar.setVisibility(View.VISIBLE);
 
         FileUploader();
