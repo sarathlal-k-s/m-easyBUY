@@ -156,6 +156,8 @@ public class postFragment extends Fragment {
                             public void onSuccess(Uri uri) {
                                 imageurl = uri.toString();
                                 documentReference.update("image",imageurl);
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Toast.makeText(getActivity(), "Ad posted", Toast.LENGTH_LONG).show();
                                 Log.d("dd","image url updated");
                             }
                         });
@@ -233,14 +235,14 @@ public class postFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
-                    progressBar.setVisibility(View.INVISIBLE);
+
                     Log.d("dd","user details added");
                     try {
                         FileUploader();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(getActivity(), "Ad posted", Toast.LENGTH_LONG).show();
+
                 }
                 else{
                     progressBar.setVisibility(View.INVISIBLE);
