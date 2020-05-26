@@ -123,7 +123,7 @@ public class postFragment extends Fragment {
     }
 
     private void FileUploader(){
-        final StorageReference ref = storageReference.child(adId+"."+"jpeg");
+        final StorageReference ref = storageReference.child(adId);
         ref.putFile(resultUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
