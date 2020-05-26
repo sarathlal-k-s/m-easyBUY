@@ -32,6 +32,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
@@ -216,6 +217,7 @@ public class postFragment extends Fragment {
         editTextDescription.setText("");
         editTextPhone.setText("");
         editTextPrice.setText("");
+        Picasso.get().load(R.drawable.ic_upload).placeholder(R.drawable.ic_upload).into(imageViewUpload);
 
         String userid,username;
 
