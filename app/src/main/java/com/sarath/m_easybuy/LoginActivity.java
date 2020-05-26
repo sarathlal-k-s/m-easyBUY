@@ -45,6 +45,8 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailLogin);
         passwordEditText = findViewById(R.id.passwordLogin);
         progressBar = findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.INVISIBLE);
+
     }
 
     public void openRegister(){
