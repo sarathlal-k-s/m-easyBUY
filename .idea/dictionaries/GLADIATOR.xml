@@ -2,6 +2,7 @@
   <dictionary name="GLADIATOR">
     <words>
       <w>fstore</w>
+      <w>imageurl</w>
       <w>postid</w>
       <w>recycleradapter</w>
       <w>userid</w>

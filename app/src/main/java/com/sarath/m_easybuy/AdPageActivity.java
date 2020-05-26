@@ -46,7 +46,8 @@ public class AdPageActivity extends AppCompatActivity {
             price.setText("₹ "+adItem.getPrice());
             phone.setText(adItem.getPhone());
             publisherName.setText(adItem.getPublisherName());
-            Picasso.get().load(adItem.getImage()).into(image);
+            if(!adItem.getImage().equals("noimage")){
+            Picasso.get().load(adItem.getImage()).into(image); }
         }
 
         final String phNo = phone.getText().toString().trim();

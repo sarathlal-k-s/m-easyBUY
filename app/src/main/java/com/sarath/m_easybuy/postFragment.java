@@ -129,6 +129,17 @@ public class postFragment extends Fragment {
     }
 
     private void FileUploader() throws IOException {
+        Log.d("dd","file uploader started");
+
+        if(resultUri == null){
+            documentReference.update("image","noimage").addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Log.d("dd","noimage added");
+                }
+            });
+            return;
+        }
         final StorageReference ref = storageReference.child(adId);
         Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),resultUri);
 
@@ -139,11 +150,13 @@ public class postFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        Log.d("dd","image uploaded");
                         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
                                 imageurl = uri.toString();
                                 documentReference.update("image",imageurl);
+                                Log.d("dd","image url updated");
                             }
                         });
                     }
@@ -154,14 +167,11 @@ public class postFragment extends Fragment {
                         Toast.makeText(getActivity(),"Image not uploaded",Toast.LENGTH_LONG).show();
                     }
                 });
-
+        Log.d("dd","file uploader ended");
     }
 
     private void postAd() throws IOException {
         progressBar.setVisibility(View.VISIBLE);
-
-        FileUploader();
-
         title = editTextTitle.getText().toString().trim();
         description = editTextDescription.getText().toString().trim();
         price = editTextPrice.getText().toString().trim();
@@ -218,12 +228,18 @@ public class postFragment extends Fragment {
         adDetails.put("publisherName",username);
         adDetails.put("publisherID",userid);
         adDetails.put("timestamp", FieldValue.serverTimestamp());
-
+        Log.d("dd","user details adding started");
         documentReference.set(adDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
                     progressBar.setVisibility(View.INVISIBLE);
+                    Log.d("dd","user details added");
+                    try {
+                        FileUploader();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     Toast.makeText(getActivity(), "Ad posted", Toast.LENGTH_LONG).show();
                 }
                 else{
@@ -232,6 +248,6 @@ public class postFragment extends Fragment {
                 }
             }
         });
-
+        Log.d("dd","post ad ended");
     }
 }
