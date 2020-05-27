@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -81,7 +82,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void registerUser(){
+        editTextUsername.onEditorAction(EditorInfo.IME_ACTION_DONE);
+        editTextEmail.onEditorAction(EditorInfo.IME_ACTION_DONE);
+        editTextPassword.onEditorAction(EditorInfo.IME_ACTION_DONE);
         progressBar.setVisibility(View.VISIBLE);
+
         final String username = editTextUsername.getText().toString().trim();
         final String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();

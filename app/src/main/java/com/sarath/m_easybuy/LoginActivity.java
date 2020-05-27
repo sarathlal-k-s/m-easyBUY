@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -62,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginUser(){
+        passwordEditText.onEditorAction(EditorInfo.IME_ACTION_DONE);
+        emailEditText.onEditorAction(EditorInfo.IME_ACTION_DONE);
         progressBar.setVisibility(View.VISIBLE);
         String email = emailEditText.getText().toString().trim();
         String password = passwordEditText.getText().toString().trim();
