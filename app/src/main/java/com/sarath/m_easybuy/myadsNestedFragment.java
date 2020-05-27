@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -27,6 +28,8 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
 
     private itemAdapter myadsRecycleradapter;
     private String userid;
+    FirebaseFirestore fstore = FirebaseFirestore.getInstance();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -35,11 +38,10 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
         RecyclerView myadsRecyclerView = view.findViewById(R.id.myadsRecyclerView);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userid = user.getUid();
-        FirebaseFirestore fstore = FirebaseFirestore.getInstance();
-        Query query = fstore.collection("users").document(userid).collection("userAds").orderBy("timestamp", Query.Direction.DESCENDING);
+        Query queryUserads = fstore.collection("users").document(userid).collection("userAds").orderBy("timestamp", Query.Direction.DESCENDING);
 
         FirestoreRecyclerOptions<adModel> options = new FirestoreRecyclerOptions.Builder<adModel>()
-                .setQuery(query,adModel.class).build();
+                .setQuery(queryUserads,adModel.class).build();
 
         myadsRecycleradapter = new itemAdapter(options,this,2);
         myadsRecyclerView.setHasFixedSize(true);
@@ -66,9 +68,18 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
 
     @Override
     public void onItemClick(DocumentSnapshot documentSnapshot) {
+        Log.d("dd","id :"+documentSnapshot.getData());
         adModel adModel = documentSnapshot.toObject(adModel.class);
         Intent intent = new Intent(getActivity(),AdPageActivity.class).putExtra("data",adModel);
         startActivity(intent);
+    }
+
+    @Override
+    public void onDeleteClick(DocumentSnapshot documentSnapshot) {
+        DocumentReference ref = fstore.collection("ads").document(documentSnapshot.getId());
+        ref.delete();
+        documentSnapshot.getReference().delete();
+
     }
 
     public void onBackPressed()

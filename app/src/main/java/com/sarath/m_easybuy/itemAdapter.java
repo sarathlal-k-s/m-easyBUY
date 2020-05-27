@@ -93,7 +93,9 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
                 delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("dd","delete pressed");
+                        int position = getAdapterPosition();
+                        Log.d("dd","delete pressed at position"+Integer.toString(position));
+                        listener.onDeleteClick(getSnapshots().getSnapshot(position));
                     }
                 });
                 linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -118,8 +120,10 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
         }
     }
 
+
     public interface OnListItemClick{
         void onItemClick(DocumentSnapshot documentSnapshot);
+        void onDeleteClick(DocumentSnapshot documentSnapshot);
     }
 
 }
