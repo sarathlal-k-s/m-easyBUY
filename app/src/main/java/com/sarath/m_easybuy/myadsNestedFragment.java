@@ -1,6 +1,8 @@
 package com.sarath.m_easybuy;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -80,19 +82,37 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
     }
 
     @Override
-    public void onDeleteClick(DocumentSnapshot documentSnapshot) {
-        documentSnapshot.getReference().delete();
-
-        DocumentReference documentReference = fstore.collection("ads").document(documentSnapshot.getId());
-        documentReference.delete();
-
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference("images").child(documentSnapshot.getId());
-        storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+    public void onDeleteClick(final DocumentSnapshot documentSnapshot) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Delete this ad?");
+        builder.setMessage("Are you sure you want to delete this ad?");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(getContext(),"Ad Deleted",Toast.LENGTH_LONG).show();
+            public void onClick(DialogInterface dialog, int which) {
+                documentSnapshot.getReference().delete();
+
+                DocumentReference documentReference = fstore.collection("ads").document(documentSnapshot.getId());
+                documentReference.delete();
+
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference("images").child(documentSnapshot.getId());
+                storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(getContext(),"Ad Deleted",Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 
     public void onBackPressed()

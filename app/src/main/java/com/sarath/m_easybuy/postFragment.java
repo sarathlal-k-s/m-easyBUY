@@ -142,6 +142,8 @@ public class postFragment extends Fragment {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Log.d("dd","noimage added");
+                    progressBar.setVisibility(View.INVISIBLE);
+                    Toast.makeText(getActivity(), "Ad posted", Toast.LENGTH_LONG).show();
                 }
             });
             return;
@@ -258,6 +260,7 @@ public class postFragment extends Fragment {
             }
         });
         userAdsDocumentReference.set(adDetails);
+        userAdsDocumentReference.update("image","noimage");
         Log.d("dd","post ad ended");
     }
 }
