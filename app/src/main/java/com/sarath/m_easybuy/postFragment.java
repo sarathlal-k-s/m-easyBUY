@@ -36,9 +36,12 @@ import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import id.zelory.compressor.Compressor;
 
 
 /**
@@ -149,10 +152,10 @@ public class postFragment extends Fragment {
             return;
         }
         final StorageReference ref = storageReference.child(adId);
-        Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),resultUri);
-
+        File imgFile = new File(resultUri.getPath());
+        Bitmap bitmap = new Compressor(getContext()).compressToBitmap(imgFile);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 20, baos);
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, baos);
         byte[] data = baos.toByteArray();
         UploadTask uploadTask = (UploadTask) ref.putBytes(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
