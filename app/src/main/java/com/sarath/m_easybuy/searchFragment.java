@@ -41,7 +41,7 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
         FirestoreRecyclerOptions<adModel> options = new FirestoreRecyclerOptions.Builder<adModel>()
                 .setQuery(query,adModel.class).build();
 
-        recycleradapter = new itemAdapter(options,this);
+        recycleradapter = new itemAdapter(options,this,1);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(recycleradapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());

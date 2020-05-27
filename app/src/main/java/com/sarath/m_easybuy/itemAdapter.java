@@ -2,11 +2,13 @@ package com.sarath.m_easybuy;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,17 +27,27 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
 
     private LayoutInflater layoutInflater;
     private OnListItemClick onListItemClick;
+    private int type;
 
-    public itemAdapter(@NonNull FirestoreRecyclerOptions<adModel> options,OnListItemClick onListItemClick) {
+    public itemAdapter(@NonNull FirestoreRecyclerOptions<adModel> options,OnListItemClick onListItemClick,int type) {
         super(options);
         this.onListItemClick = onListItemClick;
+        this.type = type;
     }
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = layoutInflater.from(parent.getContext()).inflate(R.layout.aditem,parent,false);
+        View view;
+        if(type == 2){
+            Log.d("dd","2nd type");
+            view = layoutInflater.from(parent.getContext()).inflate(R.layout.myadsaditem,parent,false);
+        }
+        else{
+            Log.d("dd","1st type");
+            view = layoutInflater.from(parent.getContext()).inflate(R.layout.aditem,parent,false);
+        }
         return new ViewHolder(view,onListItemClick);
     }
 
@@ -54,7 +66,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
 
         OnListItemClick listener;
         TextView title,price,description,username;
-        ImageView image;
+        ImageView image,delete;
         public ViewHolder(@NonNull View itemView, final OnListItemClick listener) {
             super(itemView);
             this.listener = listener;
@@ -64,15 +76,45 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
             image = itemView.findViewById(R.id.imageViewImage);
             username = itemView.findViewById(R.id.textViewUsername);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if(position != RecyclerView.NO_POSITION && listener != null){
-                        listener.onItemClick(getSnapshots().getSnapshot(position));
+            if(type == 1) {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION && listener != null) {
+                            listener.onItemClick(getSnapshots().getSnapshot(position));
+                        }
                     }
-                }
-            });
+                });
+            }
+            else{
+                LinearLayout linearLayout = itemView.findViewById(R.id.adBody);
+                delete = itemView.findViewById(R.id.deleteAd);
+                delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("dd","delete pressed");
+                    }
+                });
+                linearLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION && listener != null) {
+                            listener.onItemClick(getSnapshots().getSnapshot(position));
+                        }
+                    }
+                });
+                image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION && listener != null) {
+                            listener.onItemClick(getSnapshots().getSnapshot(position));
+                        }
+                    }
+                });
+            }
         }
     }
 

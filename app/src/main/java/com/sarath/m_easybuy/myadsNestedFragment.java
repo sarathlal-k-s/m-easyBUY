@@ -41,7 +41,7 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
         FirestoreRecyclerOptions<adModel> options = new FirestoreRecyclerOptions.Builder<adModel>()
                 .setQuery(query,adModel.class).build();
 
-        myadsRecycleradapter = new itemAdapter(options,this);
+        myadsRecycleradapter = new itemAdapter(options,this,2);
         myadsRecyclerView.setHasFixedSize(true);
         myadsRecyclerView.setAdapter(myadsRecycleradapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
