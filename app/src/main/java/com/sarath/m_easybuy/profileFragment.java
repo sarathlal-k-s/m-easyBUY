@@ -58,7 +58,7 @@ public class profileFragment extends Fragment {
         textViewYourAds.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack("here").replace(R.id.fragmentContainerProfileFragment,new myadsNestedFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragmentContainerProfileFragment,new myadsNestedFragment()).commit();
             }
         });
 

@@ -114,11 +114,4 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
         alert.show();
 
     }
-
-    public void onBackPressed()
-    {
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        fm.popBackStackImmediate("here",0);
-    }
-
 }
