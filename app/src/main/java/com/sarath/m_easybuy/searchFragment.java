@@ -27,13 +27,12 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
         // Required empty public constructor
     }
 
-    itemAdapter recycleradapter;
+    private itemAdapter recycleradapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         FirebaseFirestore fstore = FirebaseFirestore.getInstance();
@@ -41,7 +40,6 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
 
         FirestoreRecyclerOptions<adModel> options = new FirestoreRecyclerOptions.Builder<adModel>()
                 .setQuery(query,adModel.class).build();
-
 
         recycleradapter = new itemAdapter(options,this);
         recyclerView.setHasFixedSize(true);

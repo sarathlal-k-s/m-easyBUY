@@ -56,7 +56,7 @@ public class postFragment extends Fragment {
     private String title,description,price,phone,imageurl;
     private ProgressBar progressBar;
     private StorageReference storageReference;
-    private DocumentReference documentReference;
+    private DocumentReference documentReference,userAdsDocumentReference;
     private FirebaseUser user;
     private FirebaseFirestore fstore;
 
@@ -96,6 +96,11 @@ public class postFragment extends Fragment {
 
         documentReference = fstore.collection("ads").document();
         adId = documentReference.getId();
+
+        userAdsDocumentReference=fstore.collection("users")
+                .document(user.getUid())
+                .collection("userAds")
+                .document(adId);
 
         storageReference = FirebaseStorage.getInstance().getReference("images");
 
@@ -157,6 +162,7 @@ public class postFragment extends Fragment {
                             public void onSuccess(Uri uri) {
                                 imageurl = uri.toString();
                                 documentReference.update("image",imageurl);
+                                userAdsDocumentReference.update("image",imageurl);
                                 progressBar.setVisibility(View.INVISIBLE);
                                 Toast.makeText(getActivity(), "Ad posted", Toast.LENGTH_LONG).show();
                                 Log.d("dd","image url updated");
@@ -237,7 +243,6 @@ public class postFragment extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()) {
-
                     Log.d("dd","user details added");
                     try {
                         FileUploader();
@@ -252,6 +257,7 @@ public class postFragment extends Fragment {
                 }
             }
         });
+        userAdsDocumentReference.set(adDetails);
         Log.d("dd","post ad ended");
     }
 }
