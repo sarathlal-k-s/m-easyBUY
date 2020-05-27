@@ -66,6 +66,12 @@
                         app:layout_constraintTop_toBottomOf="@id/textViewUsername"
                         app:layout_constraintVertical_bias="0.172" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="0.1dp"
+                        android:background="#6c6c6c"
+                        app:layout_constraintTop_toBottomOf="@id/textViewEmail"
+                        app:layout_constraintBottom_toTopOf="@id/textViewYourAds"/>
 
                     <TextView
                         android:id="@+id/textViewYourAds"
