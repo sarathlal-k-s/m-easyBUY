@@ -22,7 +22,6 @@
         android:drawableRight="@drawable/ic_person_black_24dp"
         android:ems="10"
         android:hint="@string/username"
-        android:inputType="textVisiblePassword|textNoSuggestions"
         android:padding="16dp"
         app:layout_constraintBottom_toTopOf="@id/emailRegister"
         app:layout_constraintEnd_toEndOf="@+id/emailRegister"
