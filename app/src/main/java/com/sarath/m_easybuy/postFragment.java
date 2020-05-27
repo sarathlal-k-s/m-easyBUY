@@ -168,8 +168,6 @@ public class postFragment extends Fragment {
                                 imageurl = uri.toString();
                                 documentReference.update("image",imageurl);
                                 userAdsDocumentReference.update("image",imageurl);
-                                progressBar.setVisibility(View.INVISIBLE);
-                                Toast.makeText(getActivity(), "Ad posted", Toast.LENGTH_LONG).show();
                                 Log.d("dd","image url updated");
                             }
                         });
@@ -251,6 +249,8 @@ public class postFragment extends Fragment {
                     Log.d("dd","user details added");
                     try {
                         FileUploader();
+                        progressBar.setVisibility(View.INVISIBLE);
+                        Toast.makeText(getActivity(), "Ad posted", Toast.LENGTH_LONG).show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
