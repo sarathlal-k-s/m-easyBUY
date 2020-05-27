@@ -1,16 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:fillViewport="true"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/darkGrey">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:background="@color/darkGrey">
 
         <TextView
             android:id="@+id/textViewProfile"
@@ -26,26 +20,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-            <FrameLayout
-                android:id="@+id/fragmentContainerProfileFragment"
-                android:layout_marginTop="150dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:background="@drawable/rect"
-                app:layout_constraintTop_toBottomOf="@id/textViewProfile"
-                android:padding="10dp">
-
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_marginTop="130dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/lightGrey">
+                    android:background="@drawable/rect"
+                    app:layout_constraintVertical_bias="1"
+                    app:layout_constraintTop_toBottomOf="@id/textViewProfile"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:padding="10dp">
 
                     <TextView
                         android:id="@+id/textViewUsername"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
+                        android:layout_marginTop="15dp"
                         android:text="Name"
                         android:textColor="@color/white"
                         android:textSize="35sp"
@@ -67,40 +56,33 @@
                         app:layout_constraintVertical_bias="0.172" />
 
                     <View
+                        android:id="@+id/line"
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
                         android:background="#6c6c6c"
-                        app:layout_constraintTop_toBottomOf="@id/textViewEmail"
-                        app:layout_constraintBottom_toTopOf="@id/textViewYourAds"/>
+                        android:layout_marginTop="40dp"
+                        app:layout_constraintTop_toBottomOf="@id/textViewEmail" />
 
                     <TextView
-                        android:id="@+id/textViewYourAds"
+                        android:id="@+id/myAds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:text="9"
-                        android:textColor="@color/white"
-                        android:textSize="60dp"
-                        android:paddingRight="30dp"
-                        android:paddingLeft="30dp"
-                        android:paddingTop="30dp"
-                        app:layout_constraintBottom_toTopOf="@id/logoutButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewEmail"
-                        app:layout_constraintVertical_bias="0.3" />
-
-                    <TextView
-                        android:id="@+id/yourAdsTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ADS"
+                        android:text="MY ADS"
                         android:textColor="@color/offWhite"
-                        android:textSize="15sp"
-                        android:layout_marginBottom="20dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/textViewYourAds" />
+                        android:textSize="10sp"
+                        android:layout_marginBottom="5dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/line"/>
+
+                    <FrameLayout
+                        android:id="@+id/fragmentContainerProfileFragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="125dp"
+                        android:layout_marginBottom="65dp"
+                        app:layout_constraintTop_toBottomOf="@id/line">
+                    </FrameLayout>
 
                     <Button
                         android:id="@+id/logoutButton"
@@ -113,10 +95,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/yourAdsTitle"/>
+                        app:layout_constraintTop_toBottomOf="@id/fragmentContainerProfileFragment"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>

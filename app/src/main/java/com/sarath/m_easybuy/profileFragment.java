@@ -54,13 +54,7 @@ public class profileFragment extends Fragment {
             textViewEmail.setText(email);
         }
 
-        textViewYourAds = view.findViewById(R.id.textViewYourAds);
-        textViewYourAds.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction().addToBackStack(null).replace(R.id.fragmentContainerProfileFragment,new myadsNestedFragment()).commit();
-            }
-        });
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerProfileFragment,new myadsNestedFragment()).commit();
 
         return view;
     }
