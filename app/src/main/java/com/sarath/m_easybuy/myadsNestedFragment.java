@@ -71,7 +71,7 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
         super.onStart();
         Log.d("dd","started listening");
         myadsRecycleradapter.startListening();
-        new CountDownTimer(100, 100) {
+        new CountDownTimer(200, 100) {
             @Override
             public void onTick(long millisUntilFinished) {
 

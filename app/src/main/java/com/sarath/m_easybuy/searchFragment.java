@@ -63,7 +63,7 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
     public void onStart() {
         super.onStart();
         recycleradapter.startListening();
-        new CountDownTimer(300, 100) {
+        new CountDownTimer(200, 100) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -91,6 +91,7 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         prefs.edit().putInt("lastPos",lastPosition).apply();
         Log.d("shared","On pause last pos :"+Integer.toString(lastPosition));
+
     }
 
     @Override
