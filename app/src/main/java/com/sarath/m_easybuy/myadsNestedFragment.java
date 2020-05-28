@@ -80,7 +80,11 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                 int lastPosition = prefs.getInt("lastPos",0);
                 Log.d("shared",Integer.toString(lastPosition));
-                myadsRecyclerView.smoothScrollToPosition(lastPosition);
+                try {
+                    myadsRecyclerView.smoothScrollToPosition(lastPosition);
+                }catch (IllegalArgumentException e){
+                    myadsRecyclerView.smoothScrollToPosition(0);
+                }
             }
         }.start();
     }
