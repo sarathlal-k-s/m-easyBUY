@@ -51,9 +51,7 @@ public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.Vi
         holder.description.setText(model.getDescription());
         holder.username.setText(model.getPublisherName());
         Log.d("dd","getting image");
-        if(!model.getImage().equals("noimage")){
-            Picasso.get().load(model.getImage()).placeholder(R.drawable.loading).into(holder.image);
-        }
+        Picasso.get().load(model.getImage()).placeholder(R.drawable.imageplaceholder).into(holder.image);
     }
 
 
