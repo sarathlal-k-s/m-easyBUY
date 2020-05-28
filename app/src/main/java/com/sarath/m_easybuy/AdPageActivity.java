@@ -47,7 +47,7 @@ public class AdPageActivity extends AppCompatActivity {
             phone.setText(adItem.getPhone());
             publisherName.setText(adItem.getPublisherName());
             if(!adItem.getImage().equals("noimage")){
-            Picasso.get().load(adItem.getImage()).placeholder(R.drawable.imageplaceholder).into(image); }
+            Picasso.get().load(adItem.getImage()).placeholder(R.drawable.loading).into(image); }
         }
 
         final String phNo = phone.getText().toString().trim();
