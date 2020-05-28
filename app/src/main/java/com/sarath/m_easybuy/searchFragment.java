@@ -63,7 +63,7 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
     public void onStart() {
         super.onStart();
         recycleradapter.startListening();
-        new CountDownTimer(100, 100) {
+        new CountDownTimer(300, 100) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -72,7 +72,7 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                 int lastPosition = prefs.getInt("lastPos",0);
                 Log.d("shared",Integer.toString(lastPosition));
-                recyclerView.scrollToPosition(lastPosition);
+                recyclerView.smoothScrollToPosition(lastPosition);
             }
         }.start();
     }
