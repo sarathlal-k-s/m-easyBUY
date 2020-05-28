@@ -19,7 +19,7 @@
             android:layout_marginTop="30dp"
             android:text="@string/post_ad"
             android:textColor="@color/white"
-            android:textSize="40sp"
+            android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
