@@ -1,8 +1,5 @@
 package com.sarath.m_easybuy;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +15,6 @@ import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Transformation;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 public class itemAdapter extends FirestoreRecyclerAdapter<adModel,itemAdapter.ViewHolder> {
 
