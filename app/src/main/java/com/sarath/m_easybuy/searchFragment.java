@@ -71,7 +71,7 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
             public void onFinish() {
                 SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
                 int lastPosition = prefs.getInt("lastPos",0);
-                Log.d("shared",Integer.toString(lastPosition));
+                Log.d("shared","on start pos :"+Integer.toString(lastPosition));
                 recyclerView.smoothScrollToPosition(lastPosition);
             }
         }.start();
