@@ -37,6 +37,7 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
     private itemAdapter recycleradapter;
     RecyclerView recyclerView;
     LinearLayoutManager layoutManager;
+    int lastPosition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +45,7 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+        lastPosition = 0;
         recyclerView = view.findViewById(R.id.recyclerView);
         FirebaseFirestore fstore = FirebaseFirestore.getInstance();
         Query query = fstore.collection("ads").orderBy("timestamp", Query.Direction.DESCENDING);
@@ -69,8 +71,6 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
 
             }
             public void onFinish() {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                int lastPosition = prefs.getInt("lastPos",0);
                 Log.d("shared","on start pos :"+Integer.toString(lastPosition));
                 try {
                     recyclerView.smoothScrollToPosition(lastPosition);
@@ -91,9 +91,7 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
     @Override
     public void onPause() {
         super.onPause();
-        int lastPosition = layoutManager.findLastCompletelyVisibleItemPosition();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        prefs.edit().putInt("lastPos",lastPosition).apply();
+        lastPosition = layoutManager.findLastCompletelyVisibleItemPosition();
         Log.d("shared","On pause last pos :"+Integer.toString(lastPosition));
 
     }

@@ -43,12 +43,14 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
     FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     LinearLayoutManager layoutManager;
     RecyclerView myadsRecyclerView;
+    int lastPosition;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.nestedfragment_myads, container, false);
 
+        lastPosition = 0;
         myadsRecyclerView = view.findViewById(R.id.myadsRecyclerView);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userid = user.getUid();
@@ -77,8 +79,6 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
 
             }
             public void onFinish() {
-                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-                int lastPosition = prefs.getInt("lastPos",0);
                 Log.d("shared",Integer.toString(lastPosition));
                 try {
                     myadsRecyclerView.smoothScrollToPosition(lastPosition);
@@ -99,9 +99,7 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
     @Override
     public void onPause() {
         super.onPause();
-        int lastPosition = layoutManager.findLastCompletelyVisibleItemPosition();
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        prefs.edit().putInt("lastPos",lastPosition).apply();
+        lastPosition = layoutManager.findLastCompletelyVisibleItemPosition();
         Log.d("shared","On pause last pos :"+Integer.toString(lastPosition));
     }
 
