@@ -141,14 +141,6 @@ public class postFragment extends Fragment {
         Log.d("dd","file uploader started");
 
         if(resultUri == null){
-            documentReference.update("image","noimage").addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d("dd","noimage added");
-                    progressBar.setVisibility(View.INVISIBLE);
-                    Toast.makeText(getActivity(), "Ad posted", Toast.LENGTH_LONG).show();
-                }
-            });
             return;
         }
         final StorageReference ref = storageReference.child(adId);
@@ -262,6 +254,7 @@ public class postFragment extends Fragment {
                 }
             }
         });
+        documentReference.update("image","noimage");
         userAdsDocumentReference.set(adDetails);
         userAdsDocumentReference.update("image","noimage");
         Log.d("dd","post ad ended");

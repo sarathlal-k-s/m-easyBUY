@@ -12,12 +12,14 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -90,16 +92,22 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                //deleting from userads
                 documentSnapshot.getReference().delete();
-
+                //deleting from ads
                 DocumentReference documentReference = fstore.collection("ads").document(documentSnapshot.getId());
                 documentReference.delete();
-
+                //deleting from storage
                 StorageReference storageReference = FirebaseStorage.getInstance().getReference("images").child(documentSnapshot.getId());
                 storageReference.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(getContext(),"Ad Deleted",Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("dd","Ad doesn't have an image in storage to delete");
                     }
                 });
             }
