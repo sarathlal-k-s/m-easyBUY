@@ -243,6 +243,7 @@ public class postFragment extends Fragment {
                         FileUploader();
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(getActivity(), "Ad posted", Toast.LENGTH_LONG).show();
+                        getActivity().recreate();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
