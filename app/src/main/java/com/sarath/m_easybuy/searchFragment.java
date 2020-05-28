@@ -1,15 +1,22 @@
 package com.sarath.m_easybuy;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -28,13 +35,16 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
     }
 
     private itemAdapter recycleradapter;
+    RecyclerView recyclerView;
+    LinearLayoutManager layoutManager;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView = view.findViewById(R.id.recyclerView);
         FirebaseFirestore fstore = FirebaseFirestore.getInstance();
         Query query = fstore.collection("ads").orderBy("timestamp", Query.Direction.DESCENDING);
 
@@ -44,9 +54,8 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
         recycleradapter = new itemAdapter(options,this,1);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(recycleradapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-
         return view;
     }
 
@@ -54,12 +63,34 @@ public class searchFragment extends Fragment implements itemAdapter.OnListItemCl
     public void onStart() {
         super.onStart();
         recycleradapter.startListening();
+        new CountDownTimer(100, 100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                int lastPosition = prefs.getInt("lastPos",0);
+                Log.d("shared",Integer.toString(lastPosition));
+                recyclerView.scrollToPosition(lastPosition);
+            }
+        }.start();
     }
 
     @Override
     public void onStop() {
         super.onStop();
         recycleradapter.stopListening();
+    }
+
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        int lastPosition = layoutManager.findLastCompletelyVisibleItemPosition();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        prefs.edit().putInt("lastPos",lastPosition).apply();
+        Log.d("shared","On pause last pos :"+Integer.toString(lastPosition));
     }
 
     @Override

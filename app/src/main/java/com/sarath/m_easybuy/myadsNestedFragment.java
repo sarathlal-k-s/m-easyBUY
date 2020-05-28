@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,13 +41,15 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
     private itemAdapter myadsRecycleradapter;
     private String userid;
     FirebaseFirestore fstore = FirebaseFirestore.getInstance();
+    LinearLayoutManager layoutManager;
+    RecyclerView myadsRecyclerView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.nestedfragment_myads, container, false);
 
-        RecyclerView myadsRecyclerView = view.findViewById(R.id.myadsRecyclerView);
+        myadsRecyclerView = view.findViewById(R.id.myadsRecyclerView);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         userid = user.getUid();
         Query queryUserads = fstore.collection("users").document(userid).collection("userAds").orderBy("timestamp", Query.Direction.DESCENDING);
@@ -55,7 +60,7 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
         myadsRecycleradapter = new itemAdapter(options,this,2);
         myadsRecyclerView.setHasFixedSize(true);
         myadsRecyclerView.setAdapter(myadsRecycleradapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager = new LinearLayoutManager(getActivity());
         myadsRecyclerView.setLayoutManager(layoutManager);
 
         return view;
@@ -66,6 +71,18 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
         super.onStart();
         Log.d("dd","started listening");
         myadsRecycleradapter.startListening();
+        new CountDownTimer(100, 100) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+            public void onFinish() {
+                SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+                int lastPosition = prefs.getInt("lastPos",0);
+                Log.d("shared",Integer.toString(lastPosition));
+                myadsRecyclerView.scrollToPosition(lastPosition);
+            }
+        }.start();
     }
 
     @Override
@@ -73,6 +90,15 @@ public class myadsNestedFragment extends Fragment implements itemAdapter.OnListI
         super.onStop();
         Log.d("dd","stopped listening");
         myadsRecycleradapter.stopListening();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        int lastPosition = layoutManager.findLastCompletelyVisibleItemPosition();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        prefs.edit().putInt("lastPos",lastPosition).apply();
+        Log.d("shared","On pause last pos :"+Integer.toString(lastPosition));
     }
 
     @Override
